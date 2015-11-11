@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AquariaTrainerCSharp.Properties
-{
-
-
+namespace AquariaTrainerCSharp.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,179 @@ namespace AquariaTrainerCSharp.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute( "System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0" )]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute( "Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode" )]
-        internal Resources()
-        {
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute( global::System.ComponentModel.EditorBrowsableState.Advanced )]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ( ( resourceMan == null ) )
-                {
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AquariaTrainerCSharp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute( global::System.ComponentModel.EditorBrowsableState.Advanced )]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attach.
+        /// </summary>
+        public static string strBtAttach {
+            get {
+                return ResourceManager.GetString("strBtAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detach.
+        /// </summary>
+        public static string strBtDetach {
+            get {
+                return ResourceManager.GetString("strBtDetach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dual form / Naija: attack always enabled.
+        /// </summary>
+        public static string strChkCheatDualFormAttackHack {
+            get {
+                return ResourceManager.GetString("strChkCheatDualFormAttackHack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to God mode.
+        /// </summary>
+        public static string strChkCheatGodMode {
+            get {
+                return ResourceManager.GetString("strChkCheatGodMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infinite items (for cooking).
+        /// </summary>
+        public static string strChkCheatInfiniteItemsCook {
+            get {
+                return ResourceManager.GetString("strChkCheatInfiniteItemsCook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infinite items (when using them).
+        /// </summary>
+        public static string strChkCheatInfiniteItemsUse {
+            get {
+                return ResourceManager.GetString("strChkCheatInfiniteItemsUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instant charge attacks.
+        /// </summary>
+        public static string strChkCheatInstantChargeAttacks {
+            get {
+                return ResourceManager.GetString("strChkCheatInstantChargeAttacks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override Energy Form damage:.
+        /// </summary>
+        public static string strChkCheatOverrideEnergyFormDamage {
+            get {
+                return ResourceManager.GetString("strChkCheatOverrideEnergyFormDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override player&apos;s velocity:.
+        /// </summary>
+        public static string strChkCheatOverrideVelocity {
+            get {
+                return ResourceManager.GetString("strChkCheatOverrideVelocity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheats.
+        /// </summary>
+        public static string strGroupBoxHeaderCheats {
+            get {
+                return ResourceManager.GetString("strGroupBoxHeaderCheats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game info.
+        /// </summary>
+        public static string strGroupBoxHeaderGameInfo {
+            get {
+                return ResourceManager.GetString("strGroupBoxHeaderGameInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game&apos;s process:.
+        /// </summary>
+        public static string strLblGamesProcessPrompt {
+            get {
+                return ResourceManager.GetString("strLblGamesProcessPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required game version:.
+        /// </summary>
+        public static string strLblRequiredGameVersionPrompt {
+            get {
+                return ResourceManager.GetString("strLblRequiredGameVersionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.1.2.
+        /// </summary>
+        public static string strLblRequiredGameVersionValue {
+            get {
+                return ResourceManager.GetString("strLblRequiredGameVersionValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aquaria Trainer - by vinicius.ras.
+        /// </summary>
+        public static string strMainWindowTitle {
+            get {
+                return ResourceManager.GetString("strMainWindowTitle", resourceCulture);
             }
         }
     }

@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,54 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="strBtAttach" xml:space="preserve">
+    <value>Attach</value>
+  </data>
+  <data name="strBtDetach" xml:space="preserve">
+    <value>Detach</value>
+  </data>
+  <data name="strChkCheatDualFormAttackHack" xml:space="preserve">
+    <value>Dual form / Naija: attack always enabled</value>
+  </data>
+  <data name="strChkCheatGodMode" xml:space="preserve">
+    <value>God mode</value>
+  </data>
+  <data name="strChkCheatInfiniteItemsCook" xml:space="preserve">
+    <value>Infinite items (for cooking)</value>
+  </data>
+  <data name="strChkCheatInfiniteItemsUse" xml:space="preserve">
+    <value>Infinite items (when using them)</value>
+  </data>
+  <data name="strChkCheatInstantChargeAttacks" xml:space="preserve">
+    <value>Instant charge attacks</value>
+  </data>
+  <data name="strChkCheatOverrideEnergyFormDamage" xml:space="preserve">
+    <value>Override Energy Form damage:</value>
+  </data>
+  <data name="strChkCheatOverrideVelocity" xml:space="preserve">
+    <value>Override player's velocity:</value>
+  </data>
+  <data name="strGroupBoxHeaderCheats" xml:space="preserve">
+    <value>Cheats</value>
+  </data>
+  <data name="strGroupBoxHeaderGameInfo" xml:space="preserve">
+    <value>Game info</value>
+  </data>
+  <data name="strLblGamesProcessPrompt" xml:space="preserve">
+    <value>Game's process:</value>
+  </data>
+  <data name="strLblRequiredGameVersionPrompt" xml:space="preserve">
+    <value>Required game version:</value>
+  </data>
+  <data name="strLblRequiredGameVersionValue" xml:space="preserve">
+    <value>1.1.2</value>
+  </data>
+  <data name="strMainWindowTitle" xml:space="preserve">
+    <value>Aquaria Trainer - by vinicius.ras</value>
+  </data>
 </root>

@@ -4,9 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AquariaTrainerCSharp"
+        xmlns:props="clr-namespace:AquariaTrainerCSharp.Properties"
         mc:Ignorable="d"
-        Title="Aquaria Trainer - by vinicius.ras" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="{x:Static props:Resources.strMainWindowTitle}" Height="350" Width="525">
+    <StackPanel Orientation="Vertical" Margin="3">
+        <GroupBox Header="{x:Static props:Resources.strGroupBoxHeaderGameInfo}" Margin="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.strLblGamesProcessPrompt}" FontWeight="Bold" HorizontalAlignment="Right" Margin="3" />
+                <Label Grid.Row="0" Grid.Column="1" Content="aquaria.exe (PID: 123456)" HorizontalAlignment="Right" Margin="3" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strLblRequiredGameVersionPrompt}" FontWeight="Bold" Margin="3" />
+                <Label Grid.Row="1" Grid.Column="1" Content="{x:Static props:Resources.strLblRequiredGameVersionValue}" Margin="3" />
+
+                <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Content="{x:Static props:Resources.strBtAttach}" Margin="3" Click="ButtonClickAttachToGame" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="{x:Static props:Resources.strGroupBoxHeaderCheats}" Margin="3">
+            <StackPanel Orientation="Vertical">
+                <CheckBox Content="{x:Static props:Resources.strChkCheatGodMode}" Margin="3" />
+                <CheckBox Content="{x:Static props:Resources.strChkCheatInfiniteItemsUse}" Margin="3" />
+                <CheckBox Content="{x:Static props:Resources.strChkCheatInfiniteItemsCook}" Margin="3" />
+                <CheckBox Content="{x:Static props:Resources.strChkCheatInstantChargeAttacks}" Margin="3" />
+                <CheckBox Content="{x:Static props:Resources.strChkCheatDualFormAttackHack}" Margin="3" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideVelocity}" Margin="3" />
+                    <Slider Grid.Row="0" Grid.Column="1" Margin="3" />
+
+                    <CheckBox Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideEnergyFormDamage}" Margin="3" />
+                    <Slider Grid.Row="1" Grid.Column="1" Margin="3" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
 </Window>
