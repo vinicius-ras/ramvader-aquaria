@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="strBtAttach" xml:space="preserve">
-    <value>Attach</value>
+    <value>Attach...</value>
   </data>
   <data name="strBtDetach" xml:space="preserve">
-    <value>Detach</value>
+    <value>Detach!</value>
   </data>
   <data name="strChkCheatDualFormAttackHack" xml:space="preserve">
     <value>Dual form / Naija: attack always enabled</value>
@@ -153,14 +153,37 @@
   <data name="strLblGamesProcessPrompt" xml:space="preserve">
     <value>Game's process:</value>
   </data>
+  <data name="strLblIncreasedDamageFormat" xml:space="preserve">
+    <value>Damage +{0:0}</value>
+    <comment>{0} -&gt; the amount of damage (Double) increased for the player's attack</comment>
+  </data>
+  <data name="strLblNormalDamage" xml:space="preserve">
+    <value>Normal damage</value>
+  </data>
+  <data name="strLblNormalSpeed" xml:space="preserve">
+    <value>Normal speed</value>
+  </data>
   <data name="strLblNotAttached" xml:space="preserve">
     <value>Not attached...</value>
+  </data>
+  <data name="strLblPlayerFrozen" xml:space="preserve">
+    <value>Player frozen!</value>
+  </data>
+  <data name="strLblProcessIDPrompt" xml:space="preserve">
+    <value>PID:</value>
   </data>
   <data name="strLblRequiredGameVersionPrompt" xml:space="preserve">
     <value>Required game version:</value>
   </data>
   <data name="strLblRequiredGameVersionValue" xml:space="preserve">
     <value>1.1.2</value>
+  </data>
+  <data name="strLblSlowMotion" xml:space="preserve">
+    <value>Slow motion</value>
+  </data>
+  <data name="strLblTimesFasterFormat" xml:space="preserve">
+    <value>{0:0.0}x faster</value>
+    <comment>{0} -&gt; factor (Double) which multiplies the player's speed to make him move faster.</comment>
   </data>
   <data name="strMainWindowTitle" xml:space="preserve">
     <value>Aquaria Trainer - by vinicius.ras</value>
@@ -176,5 +199,8 @@
   </data>
   <data name="strMsgGamesProcessNotFoundCaption" xml:space="preserve">
     <value>Game not found!</value>
+  </data>
+  <data name="strNoneTag" xml:space="preserve">
+    <value>&lt;NONE&gt;</value>
   </data>
 </root>

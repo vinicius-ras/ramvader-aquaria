@@ -61,7 +61,7 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attach.
+        ///   Looks up a localized string similar to Attach....
         /// </summary>
         public static string strBtAttach {
             get {
@@ -70,7 +70,7 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detach.
+        ///   Looks up a localized string similar to Detach!.
         /// </summary>
         public static string strBtDetach {
             get {
@@ -169,11 +169,56 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Damage +{0:0}.
+        /// </summary>
+        public static string strLblIncreasedDamageFormat {
+            get {
+                return ResourceManager.GetString("strLblIncreasedDamageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal damage.
+        /// </summary>
+        public static string strLblNormalDamage {
+            get {
+                return ResourceManager.GetString("strLblNormalDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal speed.
+        /// </summary>
+        public static string strLblNormalSpeed {
+            get {
+                return ResourceManager.GetString("strLblNormalSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not attached....
         /// </summary>
         public static string strLblNotAttached {
             get {
                 return ResourceManager.GetString("strLblNotAttached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player frozen!.
+        /// </summary>
+        public static string strLblPlayerFrozen {
+            get {
+                return ResourceManager.GetString("strLblPlayerFrozen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PID:.
+        /// </summary>
+        public static string strLblProcessIDPrompt {
+            get {
+                return ResourceManager.GetString("strLblProcessIDPrompt", resourceCulture);
             }
         }
         
@@ -192,6 +237,24 @@ namespace AquariaTrainerCSharp.Properties {
         public static string strLblRequiredGameVersionValue {
             get {
                 return ResourceManager.GetString("strLblRequiredGameVersionValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slow motion.
+        /// </summary>
+        public static string strLblSlowMotion {
+            get {
+                return ResourceManager.GetString("strLblSlowMotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.0}x faster.
+        /// </summary>
+        public static string strLblTimesFasterFormat {
+            get {
+                return ResourceManager.GetString("strLblTimesFasterFormat", resourceCulture);
             }
         }
         
@@ -237,6 +300,15 @@ namespace AquariaTrainerCSharp.Properties {
         public static string strMsgGamesProcessNotFoundCaption {
             get {
                 return ResourceManager.GetString("strMsgGamesProcessNotFoundCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;NONE&gt;.
+        /// </summary>
+        public static string strNoneTag {
+            get {
+                return ResourceManager.GetString("strNoneTag", resourceCulture);
             }
         }
     }
