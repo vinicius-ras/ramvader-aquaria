@@ -2,9 +2,11 @@
 using RAMvader.CodeInjection;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 
 namespace AquariaTrainerCSharp
@@ -140,6 +142,40 @@ namespace AquariaTrainerCSharp
 
         #region EVENT CALLBACKS
         /// <summary>
+        /// Called when one of the DependencyProperty objects from the #MainWindow has its value changed.
+        /// This method automatically updates the value of the corresponding injected variable into the game's process' memory space.
+        /// </summary>
+        /// <param name="depObj">A reference to the DependencyObject which owns the changed DependencyProperty. This parameter is
+        /// effectivelly a reference to the #MainWindow object.</param>
+        /// <param name="args">Contains data related to the event which changed the DependencyProperty's value.</param>
+        private static void InjectedVariableValueChanged( DependencyObject depObj, DependencyPropertyChangedEventArgs args )
+        {
+            // If the trainer is attached to the game, update the value of the variable into the game's memory space
+            MainWindow mainWnd = (MainWindow) App.Current.MainWindow;
+            if ( mainWnd.GameMemoryIO.Attached )
+            {
+                // Retrieve the information we need to update the game's memory...
+                EVariable varID = sm_dependencyPropertyToInjectedVariable[args.Property];
+                IntPtr varAddressInGame = mainWnd.GameMemoryInjector.GetInjectedVariableAddress( varID );
+
+                // Update the game's memory
+                mainWnd.GameMemoryIO.WriteToTarget( varAddressInGame, args.NewValue );
+            }
+        }
+
+
+        /// <summary>Called when the #MainWindow of the trainer is about to be closed (but before actually closing it).</summary>
+        /// <param name="sender">Object which sent the event.</param>
+        /// <param name="e">Arguments from the event.</param>
+        private void WindowClosing( object sender, CancelEventArgs e )
+        {
+            // Detach the trainer, if it is attached
+            if ( GameMemoryIO.Attached )
+                detachFromGame();
+        }
+
+
+        /// <summary>
         /// Called when the user clicks the "'Attach to' (or 'Detach from') game" button.
         /// </summary>
         /// <param name="sender">Object which sent the event.</param>
@@ -160,6 +196,13 @@ namespace AquariaTrainerCSharp
                     {
                         // Inject the trainer's code and variables into the game's memory!
                         GameMemoryInjector.Inject();
+
+                        // When the game's process exits, the MainWindow's dispatcher is used to invoke the detachFromGame() method
+                        // in the same thread which "runs" our MainWindow
+                        GameMemoryIO.TargetProcess.EnableRaisingEvents = true;
+                        GameMemoryIO.TargetProcess.Exited += ( caller, args ) => {
+                            this.Dispatcher.Invoke( () => { this.detachFromGame(); } );
+                        };
                     }
                     else
                         MessageBox.Show( this,
@@ -170,29 +213,6 @@ namespace AquariaTrainerCSharp
                     MessageBox.Show( this,
                         Properties.Resources.strMsgGamesProcessNotFound, Properties.Resources.strMsgGamesProcessNotFoundCaption,
                         MessageBoxButton.OK, MessageBoxImage.Exclamation );
-            }
-        }
-
-
-        /// <summary>
-        /// Called when one of the DependencyProperty objects from the #MainWindow has its value changed.
-        /// This method automatically updates the value of the corresponding injected variable into the game's process' memory space.
-        /// </summary>
-        /// <param name="depObj">A reference to the DependencyObject which owns the changed DependencyProperty. This parameter is
-        /// effectivelly a reference to the #MainWindow object.</param>
-        /// <param name="args">Contains data related to the event which changed the DependencyProperty's value.</param>
-        private static void InjectedVariableValueChanged( DependencyObject depObj, DependencyPropertyChangedEventArgs args )
-        {
-            // If the trainer is attached to the game, update the value of the variable into the game's memory space
-            MainWindow mainWnd = (MainWindow) App.Current.MainWindow;
-            if ( mainWnd.GameMemoryIO.Attached )
-            {
-                // Retrieve the information we need to update the game's memory...
-                EVariable varID = sm_dependencyPropertyToInjectedVariable[args.Property];
-                IntPtr varAddressInGame = mainWnd.GameMemoryInjector.GetInjectedVariableAddress( varID );
-
-                // Update the game's memory
-                mainWnd.GameMemoryIO.WriteToTarget( varAddressInGame, args.NewValue );
             }
         }
         #endregion

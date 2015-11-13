@@ -8,7 +8,7 @@
         xmlns:comModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="{x:Static props:Resources.strMainWindowTitle}" Height="350" Width="550">
+        Title="{x:Static props:Resources.strMainWindowTitle}" Height="350" Width="550" Closing="WindowClosing">
     <Window.Resources>
         <Style x:Key="styleVisibleWhenAttached" TargetType="{x:Type TypeName=FrameworkElement}">
             <Setter Property="Visibility" Value="Collapsed" />
