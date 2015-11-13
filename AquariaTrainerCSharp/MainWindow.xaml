@@ -114,7 +114,7 @@
                     </Grid.ColumnDefinitions>
 
                     <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideVelocity}" Margin="3" />
-                    <Slider Name="sldPlayerVelocity" Grid.Row="0" Grid.Column="1" Margin="3" SmallChange="0.5" TickFrequency="0.5" Value="1" IsSnapToTickEnabled="True" />
+                    <Slider Name="sldPlayerVelocity" Grid.Row="0" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverrideVelocity}" SmallChange="0.5" TickFrequency="0.5" Value="{Binding Path=PlayerVelocityFactor}" IsSnapToTickEnabled="True" Margin="3" />
                     <TextBlock Grid.Row="0" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,0,0,0" Padding="3,0,0,0">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -135,7 +135,7 @@
                     </TextBlock>
 
                     <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideEnergyFormDamage}" Margin="3" />
-                    <Slider Name="sldEnergyFormDamage" Grid.Row="1" Grid.Column="1" Margin="3" Maximum="50" />
+                    <Slider Name="sldEnergyFormDamage" Grid.Row="1" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverrideEnergyShotDamage}" Maximum="50" Value="{Binding Path=EnergyShotDamageFactor}" Margin="3" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" />
                     <TextBlock Grid.Row="2" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="3,0,0,0" Padding="3,0,0,0">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
