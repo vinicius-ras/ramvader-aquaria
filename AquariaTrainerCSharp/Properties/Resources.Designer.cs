@@ -169,6 +169,15 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not attached....
+        /// </summary>
+        public static string strLblNotAttached {
+            get {
+                return ResourceManager.GetString("strLblNotAttached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Required game version:.
         /// </summary>
         public static string strLblRequiredGameVersionPrompt {
@@ -192,6 +201,42 @@ namespace AquariaTrainerCSharp.Properties {
         public static string strMainWindowTitle {
             get {
                 return ResourceManager.GetString("strMainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to attach to the game&apos;s process!.
+        /// </summary>
+        public static string strMsgFailedToAttach {
+            get {
+                return ResourceManager.GetString("strMsgFailedToAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to attach.
+        /// </summary>
+        public static string strMsgFailedToAttachCaption {
+            get {
+                return ResourceManager.GetString("strMsgFailedToAttachCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game&apos;s process is not running or the trainer hasn&apos;t been able to detect it!.
+        /// </summary>
+        public static string strMsgGamesProcessNotFound {
+            get {
+                return ResourceManager.GetString("strMsgGamesProcessNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game not found!.
+        /// </summary>
+        public static string strMsgGamesProcessNotFoundCaption {
+            get {
+                return ResourceManager.GetString("strMsgGamesProcessNotFoundCaption", resourceCulture);
             }
         }
     }

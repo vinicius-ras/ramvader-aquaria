@@ -153,6 +153,9 @@
   <data name="strLblGamesProcessPrompt" xml:space="preserve">
     <value>Game's process:</value>
   </data>
+  <data name="strLblNotAttached" xml:space="preserve">
+    <value>Not attached...</value>
+  </data>
   <data name="strLblRequiredGameVersionPrompt" xml:space="preserve">
     <value>Required game version:</value>
   </data>
@@ -161,5 +164,17 @@
   </data>
   <data name="strMainWindowTitle" xml:space="preserve">
     <value>Aquaria Trainer - by vinicius.ras</value>
+  </data>
+  <data name="strMsgFailedToAttach" xml:space="preserve">
+    <value>Failed to attach to the game's process!</value>
+  </data>
+  <data name="strMsgFailedToAttachCaption" xml:space="preserve">
+    <value>Failed to attach</value>
+  </data>
+  <data name="strMsgGamesProcessNotFound" xml:space="preserve">
+    <value>Game's process is not running or the trainer hasn't been able to detect it!</value>
+  </data>
+  <data name="strMsgGamesProcessNotFoundCaption" xml:space="preserve">
+    <value>Game not found!</value>
   </data>
 </root>
