@@ -89,11 +89,19 @@ namespace AquariaTrainerCSharp
 
         #region PRIVATE METHODS
         /// <summary>Called when the trainer needs to be detached from the game's process.</summary>
-        private void detachFromGame()
+        private void DetachFromGame()
         {
             // Detach from the target process
             if ( GameMemoryIO.IsAttached() )
             {
+                // If the game's process is still running, all cheats must be disabled
+                if ( GameMemoryIO.TargetProcess.HasExited == false )
+                {
+                    foreach ( ECheat curCheat in Enum.GetValues( typeof( ECheat ) ) )
+                        SetCheatEnabled( curCheat, false );
+                }
+
+                // Release injected memory, cleanup and detach
                 GameMemoryInjector.ResetAllocatedMemoryData();
                 GameMemoryIO.DetachFromProcess();
             }
@@ -112,13 +120,52 @@ namespace AquariaTrainerCSharp
                 this.SetValue( varDepProp, varDef.InitialValue );
             }
         }
+
+
+        /// <summary>This method is called to enable or disable cheats, altering the game's process' memory space accordingly.</summary>
+        /// <param name="cheatID">The identifier of the cheat that needs to be enabled/disabled on the game.</param>
+        /// <param name="bEnable">A flag specifying if the cheat is to be enabled or disabled.</param>
+        private void SetCheatEnabled( ECheat cheatID, bool bEnable )
+        {
+            FieldInfo fieldInfo = typeof( ECheat ).GetField( cheatID.ToString() );
+            CheatTypeInfo cheatTypeInfo = fieldInfo.GetCustomAttribute<CheatTypeInfo>();
+
+            IntPtr targetInstructionAddress = LowLevelConstants.GetCheatTargetInstructionAddress( cheatID, GameMemoryIO.TargetProcess.MainModule.BaseAddress );
+
+            // Verify if we're enabling or disabling the cheat...
+            if ( bEnable == false )
+            {
+                // Disabling the cheat is just a matter of writing the original bytes of the instruction into the right place
+                GameMemoryIO.WriteToTarget( targetInstructionAddress, cheatTypeInfo.OriginalInstructionBytes );
+            }
+            else
+            {
+                // Enable the cheat based on its type...
+                switch ( cheatTypeInfo.CheatType )
+                {
+                    case ECheatType.evCheatTypeNOP:
+                        {
+                            // Enabling a NOP cheat is just a matter of replacing the instruction's original bytes by NOP instructions
+                            byte [] arrayOfNOPs = Enumerable.Repeat<byte>( LowLevelConstants.INSTRUCTION_NOP, cheatTypeInfo.OriginalInstructionBytes.Length ).ToArray();
+                            GameMemoryIO.WriteToTarget( targetInstructionAddress, arrayOfNOPs );
+                            break;
+                        }
+                    case ECheatType.evCheatTypeCodeCave:
+                        GameMemoryInjector.WriteCodeCaveDetour( targetInstructionAddress, cheatTypeInfo.CodeCave, cheatTypeInfo.OriginalInstructionBytes.Length );
+                        break;
+                    default:
+                        throw new NotImplementedException( string.Format( "[{0}] Activation of cheats of type \"{1}\" are not yet implemented!",
+                            this.GetType().Name, cheatTypeInfo.CheatType.ToString() ) );
+                }
+            }
+        }
         #endregion
 
 
 
 
 
-        #region PUBLIC METHODS
+#region PUBLIC METHODS
         public MainWindow()
         {
             // Initialize objects which will perform operations on the game's memory
@@ -134,13 +181,13 @@ namespace AquariaTrainerCSharp
             // Initialize window
             InitializeComponent();
         }
-        #endregion
+#endregion
 
 
 
 
 
-        #region EVENT CALLBACKS
+#region EVENT CALLBACKS
         /// <summary>
         /// Called when one of the DependencyProperty objects from the #MainWindow has its value changed.
         /// This method automatically updates the value of the corresponding injected variable into the game's process' memory space.
@@ -171,7 +218,7 @@ namespace AquariaTrainerCSharp
         {
             // Detach the trainer, if it is attached
             if ( GameMemoryIO.Attached )
-                detachFromGame();
+                DetachFromGame();
         }
 
 
@@ -184,7 +231,7 @@ namespace AquariaTrainerCSharp
         {
             // Is the trainer currently attached to the game's process?
             if ( GameMemoryIO.Attached )
-                detachFromGame();
+                DetachFromGame();
             else
             {
                 // Try to find the game's process
@@ -197,12 +244,26 @@ namespace AquariaTrainerCSharp
                         // Inject the trainer's code and variables into the game's memory!
                         GameMemoryInjector.Inject();
 
-                        // When the game's process exits, the MainWindow's dispatcher is used to invoke the detachFromGame() method
+                        // When the game's process exits, the MainWindow's dispatcher is used to invoke the DetachFromGame() method
                         // in the same thread which "runs" our MainWindow
                         GameMemoryIO.TargetProcess.EnableRaisingEvents = true;
                         GameMemoryIO.TargetProcess.Exited += ( caller, args ) => {
-                            this.Dispatcher.Invoke( () => { this.detachFromGame(); } );
+                            this.Dispatcher.Invoke( () => { this.DetachFromGame(); } );
                         };
+
+                        #if DEBUG
+                            // In debug mode, print some useful debug information
+                            Console.WriteLine( "[DEBUG]" );
+                            Console.WriteLine( "Attached to process: {0} (PID: {1}", GameMemoryIO.TargetProcess.ProcessName, GameMemoryIO.TargetProcess.Id );
+                            Console.WriteLine( "Base injection address: 0x{0}", ( (long) GameMemoryInjector.BaseInjectionAddress ).ToString( "X8" ) );
+                            Console.WriteLine( "Injected code caves:" );
+                            foreach ( ECodeCave curCodeCave in Enum.GetValues( typeof( ECodeCave ) ) )
+                                Console.WriteLine( "   {0} at 0x{1}", curCodeCave, ( (long) GameMemoryInjector.InjectedCodeCaveAddress[curCodeCave] ).ToString( "X8" ) );
+                            Console.WriteLine( "Injected variables:" );
+                            foreach ( EVariable curVariable in Enum.GetValues( typeof( EVariable ) ) )
+                                Console.WriteLine( "   {0} at 0x{1}", curVariable, ( (long) GameMemoryInjector.InjectedVariableAddress[curVariable] ).ToString( "X8" ) );
+                        #endif
+
                     }
                     else
                         MessageBox.Show( this,
@@ -233,39 +294,8 @@ namespace AquariaTrainerCSharp
             ECheat cheatID = (ECheat) chkBox.Tag;
             bool bEnableCheat = ( chkBox.IsChecked == true );
 
-            FieldInfo fieldInfo = typeof( ECheat ).GetField( cheatID.ToString() );
-            CheatTypeInfo cheatTypeInfo = fieldInfo.GetCustomAttribute<CheatTypeInfo>();
-
-            IntPtr targetInstructionAddress = LowLevelConstants.GetCheatTargetInstructionAddress( cheatID, GameMemoryIO.TargetProcess.MainModule.BaseAddress );
-
-            // Verify if we're enabling or disabling the cheat...
-            if ( bEnableCheat == false )
-            {
-                // Disabling the cheat is just a matter of writing the original bytes of the instruction into the right place
-                GameMemoryIO.WriteToTarget( targetInstructionAddress, cheatTypeInfo.OriginalInstructionBytes );
-            }
-            else
-            {
-                // Enable the cheat based on its type...
-                switch ( cheatTypeInfo.CheatType )
-                {
-                    case ECheatType.evCheatTypeNOP:
-                        {
-                            // Enabling a NOP cheat is just a matter of replacing the instruction's original bytes by NOP instructions
-                            byte [] arrayOfNOPs = Enumerable.Repeat<byte>( LowLevelConstants.INSTRUCTION_NOP, cheatTypeInfo.OriginalInstructionBytes.Length ).ToArray();
-                            GameMemoryIO.WriteToTarget( targetInstructionAddress, arrayOfNOPs );
-                            break;
-                        }
-                    case ECheatType.evCheatTypeCodeCave:
-                        GameMemoryInjector.WriteCodeCaveDetour( targetInstructionAddress, cheatTypeInfo.CodeCave, cheatTypeInfo.OriginalInstructionBytes.Length );
-                        break;
-                    default:
-                        throw new NotImplementedException( string.Format( "[{0}] Activation of cheats of type \"{1}\" are not yet implemented!",
-                            this.GetType().Name, cheatTypeInfo.CheatType.ToString() ) );
-                }
-            }
-            Console.WriteLine( "{0} {1} of type {2}", chkBox.IsChecked == true ? "ENABLE" : "Disable", cheatID, cheatTypeInfo.CheatType );
+            SetCheatEnabled( cheatID, bEnableCheat );
         }
-        #endregion
+#endregion
     }
 }

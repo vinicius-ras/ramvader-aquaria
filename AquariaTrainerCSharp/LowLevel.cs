@@ -27,7 +27,7 @@ namespace AquariaTrainerCSharp
         [CheatTypeInfo( ECodeCave.evCaveOverrideVelocity, 0xD9, 0x81, 0x98, 0x11, 0x00, 0x00 )]
         evCheatOverrideVelocity,
         /// <summary>Identifier for the cheat: Override player's damage increase.</summary>
-        [CheatTypeInfo( ECodeCave.evCaveOverrideEnergyShotDamage, 0xD9, 0x81, 0xA8, 0x11, 0x00, 0x00 )]
+        [CheatTypeInfo( ECodeCave.evCaveOverrideEnergyShotDamage, 0xD8, 0x99, 0xA8, 0x11, 0x00, 0x00 )]
         evCheatOverrideEnergyShotDamage,
     }
 
@@ -49,7 +49,7 @@ namespace AquariaTrainerCSharp
         [CodeCaveDefinition( 0x50, 0xA1, EVariable.evVarOverrideVelocity, 0x89, 0x81, 0x98, 0x11, 0x00, 0x00, 0x58, 0xD9, 0x81, 0x98, 0x11, 0x00, 0x00, 0xC3 )]
         evCaveOverrideVelocity,
         /// <summary>Identifier for the code cave used by the #ECheat.evCheatOverrideEnergyShotDamage cheat.</summary>
-        [CodeCaveDefinition( 0x50, 0xA1, EVariable.evVarOverrideEnergyShotDamage, 0x89, 0x81, 0xA8, 0x11, 0x00, 0x00, 0x58, 0xD9, 0x81, 0xA8, 0x11, 0x00, 0x00, 0xC3 )]
+        [CodeCaveDefinition( 0x50, 0xA1, EVariable.evVarOverrideEnergyShotDamage, 0x89, 0x81, 0xA8, 0x11, 0x00, 0x00, 0x58, 0xD8, 0x99, 0xA8, 0x11, 0x00, 0x00, 0xC3 )]
         evCaveOverrideEnergyShotDamage,
     }
 
@@ -92,7 +92,7 @@ namespace AquariaTrainerCSharp
             { ECheat.evCheatInstantChargeAttacks, 0x74313 },
             { ECheat.evCheatDualFormKillCountHack, 0x65558 },
             { ECheat.evCheatOverrideVelocity, 0x5ECD3 },
-            { ECheat.evCheatOverrideEnergyShotDamage, 0x6528F },
+            { ECheat.evCheatOverrideEnergyShotDamage, 0x65282 },
         };
         #endregion
 
