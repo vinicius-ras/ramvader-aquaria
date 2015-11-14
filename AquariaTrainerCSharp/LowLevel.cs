@@ -1,6 +1,7 @@
 ﻿/* This file keeps definitions for code elements which are part of the low-level features of the trainer. */
-using System;
 using RAMvader.CodeInjection;
+using System;
+using System.Collections.Generic;
 
 namespace AquariaTrainerCSharp
 {
@@ -8,18 +9,25 @@ namespace AquariaTrainerCSharp
     public enum ECheat
     {
         /// <summary>Identifier for the cheat: God Mode.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveGodMode, 0xD9, 0x80, 0xE4, 0x1A, 0x00, 0x00 )]
         evCheatGodMode,
         /// <summary>Identifier for the cheat: Infinite items (when using them).</summary>
+        [CheatTypeInfo( 0x83, 0x40, 0x3C, 0xFF )]
         evCheatInfiniteItemsUse,
         /// <summary>Identifier for the cheat: Infinite items (when cooking recipes with them).</summary>
+        [CheatTypeInfo( 0x83, 0x40, 0x3C, 0xFF )]
         evCheatInfiniteItemsCook,
         /// <summary>Identifier for the cheat: Instant charge attacks.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveInstantChargeAttacks, 0xD9, 0x96, 0x78, 0x43, 0x00, 0x00 )]
         evCheatInstantChargeAttacks,
         /// <summary>Identifier for the cheat: Dual Form's Naija attack always enabled.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveDualFormKillCountHack, 0xDB, 0x80, 0x3C, 0x15, 0x00, 0x00 )]
         evCheatDualFormKillCountHack,
         /// <summary>Identifier for the cheat: Override player's velocity factor.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveOverrideVelocity, 0xD9, 0x81, 0x98, 0x11, 0x00, 0x00 )]
         evCheatOverrideVelocity,
         /// <summary>Identifier for the cheat: Override player's damage increase.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveOverrideEnergyShotDamage, 0xD9, 0x81, 0xA8, 0x11, 0x00, 0x00 )]
         evCheatOverrideEnergyShotDamage,
     }
 
@@ -56,5 +64,53 @@ namespace AquariaTrainerCSharp
         /// <summary>Identifier for the variable used to control the player's Energy Shot damage, in the #ECheat.evCheatOverrideEnergyShotDamage cheat.</summary>
         [VariableDefinition( (Single) 0.0f )]
         evVarOverrideEnergyShotDamage,
+    }
+
+
+    /// <summary>
+    /// A static class whose only purpose is to provide constants related to the trainer's low level features.
+    /// </summary>
+    public static class LowLevelConstants
+    {
+        #region PUBLIC CONSTANTS
+        /// <summary>The byte value which represents the NOP instruction for a x86 processor.</summary>
+        public const byte INSTRUCTION_NOP = 0x90;
+        #endregion
+
+
+
+
+
+        #region PRIVATE STATIC FIELDS
+        /// <summary>Maps each cheat to the offset that must be added to the main module of the game's process, in order to find the
+        /// instruction that needs to be modified by the trainer to activate or deactivate the given cheat.</summary>
+        private static readonly Dictionary<ECheat, int> sm_cheatTargetInstructionAddress = new Dictionary<ECheat, int>()
+        {
+            { ECheat.evCheatGodMode, 0xFD877 },
+            { ECheat.evCheatInfiniteItemsUse, 0xC52E0 },
+            { ECheat.evCheatInfiniteItemsCook, 0xCB76C },
+            { ECheat.evCheatInstantChargeAttacks, 0x74313 },
+            { ECheat.evCheatDualFormKillCountHack, 0x65558 },
+            { ECheat.evCheatOverrideVelocity, 0x5ECD3 },
+            { ECheat.evCheatOverrideEnergyShotDamage, 0x6528F },
+        };
+        #endregion
+
+
+
+
+
+        #region PUBLIC STATIC METHODS
+        /// <summary>
+        /// Retrieves the address of the instruction which the trainer needs to modify in order to enable or disable a given cheat.
+        /// </summary>
+        /// <param name="cheatID">The cheat whose target instruction is to be retrieved.</param>
+        /// <param name="mainModuleBaseAddress">The base address of the game process's main module.</param>
+        /// <returns>Returns the address of the instruction associated with the given cheat.</returns>
+        public static IntPtr GetCheatTargetInstructionAddress( ECheat cheatID, IntPtr mainModuleBaseAddress )
+        {
+            return mainModuleBaseAddress + sm_cheatTargetInstructionAddress[cheatID];
+        }
+        #endregion
     }
 }

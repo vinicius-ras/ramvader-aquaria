@@ -97,11 +97,11 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Content="{x:Static props:Resources.strChkCheatGodMode}" Margin="3" />
-                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Content="{x:Static props:Resources.strChkCheatInfiniteItemsUse}" Margin="3" />
-                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Content="{x:Static props:Resources.strChkCheatInfiniteItemsCook}" Margin="3" />
-                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Content="{x:Static props:Resources.strChkCheatInstantChargeAttacks}" Margin="3" />
-                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Content="{x:Static props:Resources.strChkCheatDualFormAttackHack}" Margin="3" />
+                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatGodMode}" Tag="{x:Static local:ECheat.evCheatGodMode}" Margin="3" />
+                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatInfiniteItemsUse}" Tag="{x:Static local:ECheat.evCheatInfiniteItemsUse}" Margin="3" />
+                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatInfiniteItemsCook}" Tag="{x:Static local:ECheat.evCheatInfiniteItemsCook}" Margin="3" />
+                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatInstantChargeAttacks}" Tag="{x:Static local:ECheat.evCheatInstantChargeAttacks}" Margin="3" />
+                <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatDualFormAttackHack}" Tag="{x:Static local:ECheat.evCheatDualFormKillCountHack}" Margin="3" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -113,7 +113,7 @@
                         <ColumnDefinition Width="auto" MinWidth="100" />
                     </Grid.ColumnDefinitions>
 
-                    <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideVelocity}" Margin="3" />
+                    <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideVelocity}" Tag="{x:Static local:ECheat.evCheatOverrideVelocity}" Margin="3" />
                     <Slider Name="sldPlayerVelocity" Grid.Row="0" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverrideVelocity}" SmallChange="0.5" TickFrequency="0.5" Value="{Binding Path=PlayerVelocityFactor}" IsSnapToTickEnabled="True" Margin="3" />
                     <TextBlock Grid.Row="0" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,0,0,0" Padding="3,0,0,0">
                         <TextBlock.Style>
@@ -134,7 +134,7 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideEnergyFormDamage}" Margin="3" />
+                    <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideEnergyFormDamage}" Tag="{x:Static local:ECheat.evCheatOverrideEnergyShotDamage}" Margin="3" />
                     <Slider Name="sldEnergyFormDamage" Grid.Row="1" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverrideEnergyShotDamage}" Maximum="50" Value="{Binding Path=EnergyShotDamageFactor}" Margin="3" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" />
                     <TextBlock Grid.Row="2" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="3,0,0,0" Padding="3,0,0,0">
                         <TextBlock.Style>

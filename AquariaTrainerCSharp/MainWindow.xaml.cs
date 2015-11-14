@@ -6,8 +6,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace AquariaTrainerCSharp
 {
@@ -214,6 +214,57 @@ namespace AquariaTrainerCSharp
                         Properties.Resources.strMsgGamesProcessNotFound, Properties.Resources.strMsgGamesProcessNotFoundCaption,
                         MessageBoxButton.OK, MessageBoxImage.Exclamation );
             }
+        }
+
+
+        /// <summary>
+        /// Called whenever any of the CheckBoxes used to activate/deactivate cheats from the trainer gets checked or unchecked.
+        /// </summary>
+        /// <param name="sender">Object which sent the event.</param>
+        /// <param name="e">Arguments from the event.</param>
+        private void CheckBoxCheatToggled( object sender, RoutedEventArgs e )
+        {
+            // Only proceed if the trainer is attached...
+            if ( GameMemoryIO.Attached == false )
+                return;
+
+            // Retrieve information which will be used to enable or disable the cheat
+            CheckBox chkBox = (CheckBox) e.Source;
+            ECheat cheatID = (ECheat) chkBox.Tag;
+            bool bEnableCheat = ( chkBox.IsChecked == true );
+
+            FieldInfo fieldInfo = typeof( ECheat ).GetField( cheatID.ToString() );
+            CheatTypeInfo cheatTypeInfo = fieldInfo.GetCustomAttribute<CheatTypeInfo>();
+
+            IntPtr targetInstructionAddress = LowLevelConstants.GetCheatTargetInstructionAddress( cheatID, GameMemoryIO.TargetProcess.MainModule.BaseAddress );
+
+            // Verify if we're enabling or disabling the cheat...
+            if ( bEnableCheat == false )
+            {
+                // Disabling the cheat is just a matter of writing the original bytes of the instruction into the right place
+                GameMemoryIO.WriteToTarget( targetInstructionAddress, cheatTypeInfo.OriginalInstructionBytes );
+            }
+            else
+            {
+                // Enable the cheat based on its type...
+                switch ( cheatTypeInfo.CheatType )
+                {
+                    case ECheatType.evCheatTypeNOP:
+                        {
+                            // Enabling a NOP cheat is just a matter of replacing the instruction's original bytes by NOP instructions
+                            byte [] arrayOfNOPs = Enumerable.Repeat<byte>( LowLevelConstants.INSTRUCTION_NOP, cheatTypeInfo.OriginalInstructionBytes.Length ).ToArray();
+                            GameMemoryIO.WriteToTarget( targetInstructionAddress, arrayOfNOPs );
+                            break;
+                        }
+                    case ECheatType.evCheatTypeCodeCave:
+                        GameMemoryInjector.WriteCodeCaveDetour( targetInstructionAddress, cheatTypeInfo.CodeCave, cheatTypeInfo.OriginalInstructionBytes.Length );
+                        break;
+                    default:
+                        throw new NotImplementedException( string.Format( "[{0}] Activation of cheats of type \"{1}\" are not yet implemented!",
+                            this.GetType().Name, cheatTypeInfo.CheatType.ToString() ) );
+                }
+            }
+            Console.WriteLine( "{0} {1} of type {2}", chkBox.IsChecked == true ? "ENABLE" : "Disable", cheatID, cheatTypeInfo.CheatType );
         }
         #endregion
     }
