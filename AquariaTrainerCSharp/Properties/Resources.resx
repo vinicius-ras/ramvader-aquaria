@@ -141,6 +141,9 @@
   <data name="strChkCheatOverrideEnergyFormDamage" xml:space="preserve">
     <value>Override Energy Form damage:</value>
   </data>
+  <data name="strChkCheatOverridePetPower" xml:space="preserve">
+    <value>Override pet power</value>
+  </data>
   <data name="strChkCheatOverrideVelocity" xml:space="preserve">
     <value>Override player's velocity:</value>
   </data>
@@ -165,6 +168,13 @@
   </data>
   <data name="strLblNotAttached" xml:space="preserve">
     <value>Not attached...</value>
+  </data>
+  <data name="strLblPetPowerIncreasedFormat" xml:space="preserve">
+    <value>Power up +{0:0}</value>
+    <comment>{0} -&gt; the amount (Double) of pet power, which increases the pet's habilities</comment>
+  </data>
+  <data name="strLblPetPowerNormal" xml:space="preserve">
+    <value>Normal power</value>
   </data>
   <data name="strLblPlayerFrozen" xml:space="preserve">
     <value>Player frozen!</value>

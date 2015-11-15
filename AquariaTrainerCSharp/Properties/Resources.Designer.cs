@@ -133,6 +133,15 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Override pet power.
+        /// </summary>
+        public static string strChkCheatOverridePetPower {
+            get {
+                return ResourceManager.GetString("strChkCheatOverridePetPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Override player&apos;s velocity:.
         /// </summary>
         public static string strChkCheatOverrideVelocity {
@@ -201,6 +210,24 @@ namespace AquariaTrainerCSharp.Properties {
         public static string strLblNotAttached {
             get {
                 return ResourceManager.GetString("strLblNotAttached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power up +{0:0}.
+        /// </summary>
+        public static string strLblPetPowerIncreasedFormat {
+            get {
+                return ResourceManager.GetString("strLblPetPowerIncreasedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal power.
+        /// </summary>
+        public static string strLblPetPowerNormal {
+            get {
+                return ResourceManager.GetString("strLblPetPowerNormal", resourceCulture);
             }
         }
         

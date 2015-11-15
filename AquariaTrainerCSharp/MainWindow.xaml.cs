@@ -41,6 +41,9 @@ namespace AquariaTrainerCSharp
         /// <summary>DependencyProperty associated with the value of the "#EVariable.evVarOverrideEnergyShotDamage" injected variable.</summary>
         public static readonly DependencyProperty EnergyShotDamageFactorProperty = RegisterInjectedVariableDependencyProperty(
             "EnergyShotDamageFactor", EVariable.evVarOverrideEnergyShotDamage );
+        /// <summary>DependencyProperty associated with the value of the "#EVariable.evVarOverridePetPower" injected variable.</summary>
+        public static readonly DependencyProperty PetPowerProperty = RegisterInjectedVariableDependencyProperty(
+            "PetPower", EVariable.evVarOverridePetPower );
         #endregion
 
 

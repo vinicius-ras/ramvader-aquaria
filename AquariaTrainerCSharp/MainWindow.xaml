@@ -106,6 +106,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
@@ -136,13 +137,28 @@
 
                     <CheckBox Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.strChkCheatOverrideEnergyFormDamage}" Tag="{x:Static local:ECheat.evCheatOverrideEnergyShotDamage}" Margin="3" />
                     <Slider Name="sldEnergyFormDamage" Grid.Row="1" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverrideEnergyShotDamage}" Maximum="50" Value="{Binding Path=EnergyShotDamageFactor}" Margin="3" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" />
-                    <TextBlock Grid.Row="2" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="3,0,0,0" Padding="3,0,0,0">
+                    <TextBlock Grid.Row="1" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="3,0,0,0" Padding="3,0,0,0">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Text" Value="{Binding ElementName=sldEnergyFormDamage,Path=Value,StringFormat={x:Static props:Resources.strLblIncreasedDamageFormat}}" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ElementName=sldEnergyFormDamage,Path=Value}" Value="0">
                                         <Setter Property="Text" Value="{x:Static props:Resources.strLblNormalDamage}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <CheckBox Grid.Row="2" Grid.Column="0" Style="{StaticResource styleUncheckOnDetachment}" Checked="CheckBoxCheatToggled" Unchecked="CheckBoxCheatToggled" Content="{x:Static props:Resources.strChkCheatOverridePetPower}" Tag="{x:Static local:ECheat.evCheatOverridePetPower}" Margin="3" />
+                    <Slider Name="sldPetPower" Grid.Row="2" Grid.Column="1" Tag="{x:Static local:EVariable.evVarOverridePetPower}" Value="{Binding Path=PetPower}" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10" IsSnapToTickEnabled="True" Margin="3" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" MinWidth="60" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="3,0,0,0" Padding="3,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="{Binding ElementName=sldPetPower,Path=Value,StringFormat={x:Static props:Resources.strLblPetPowerIncreasedFormat}}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=sldPetPower,Path=Value}" Value="0">
+                                        <Setter Property="Text" Value="{x:Static props:Resources.strLblPetPowerNormal}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>

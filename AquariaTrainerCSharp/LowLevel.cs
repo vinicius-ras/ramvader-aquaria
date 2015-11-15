@@ -29,6 +29,10 @@ namespace AquariaTrainerCSharp
         /// <summary>Identifier for the cheat: Override player's damage increase.</summary>
         [CheatTypeInfo( ECodeCave.evCaveOverrideEnergyShotDamage, 0xD8, 0x99, 0xA8, 0x11, 0x00, 0x00 )]
         evCheatOverrideEnergyShotDamage,
+        /// <summary>Identifier for the cheat: Override pet power.</summary>
+        [CheatTypeInfo( ECodeCave.evCaveOverridePetPower, 0xD9, 0x80, 0xB4, 0x11, 0x00, 0x00 )]
+        evCheatOverridePetPower,
+
     }
 
 
@@ -51,6 +55,11 @@ namespace AquariaTrainerCSharp
         /// <summary>Identifier for the code cave used by the #ECheat.evCheatOverrideEnergyShotDamage cheat.</summary>
         [CodeCaveDefinition( 0x50, 0xA1, EVariable.evVarOverrideEnergyShotDamage, 0x89, 0x81, 0xA8, 0x11, 0x00, 0x00, 0x58, 0xD8, 0x99, 0xA8, 0x11, 0x00, 0x00, 0xC3 )]
         evCaveOverrideEnergyShotDamage,
+        /// <summary>Identifier for the code cave used by the #ECheat.evCheatOverridePetPower cheat.</summary>
+        [CodeCaveDefinition( 0x51, 0x8B, 0x88, 0x40, 0x1F, 0x00, 0x00, 0x81, 0xF9, 0x5A, 0x02, 0x00, 0x00, 0x75, 0x21, 0x31, 0xC9, 0xB1, 0x16, 0x51, 0xDB, 0x04, 0x24,
+            0x59, 0xD9, 0x05, EVariable.evVarOverridePetPower, 0xDF, 0xF1, 0xDD, 0xD8, 0x72, 0x0C, 0xC7, 0x80, 0xB4, 0x11, 0x00, 0x00, 0x00, 0x00, 0xB0, 0x41, 0xEB, 0x0C,
+            0x8B, 0x0D, EVariable.evVarOverridePetPower, 0x89, 0x88, 0xB4, 0x11, 0x00, 0x00, 0x59, 0xD9, 0x80, 0xB4, 0x11, 0x00, 0x00, 0xC3 )]
+        evCaveOverridePetPower,
     }
 
 
@@ -64,6 +73,9 @@ namespace AquariaTrainerCSharp
         /// <summary>Identifier for the variable used to control the player's Energy Shot damage, in the #ECheat.evCheatOverrideEnergyShotDamage cheat.</summary>
         [VariableDefinition( (Single) 0.0f )]
         evVarOverrideEnergyShotDamage,
+        /// <summary>Identifier for the variable used to control the power of the player's pet, in the #ECheat.evCheatOverridePetPower cheat.</summary>
+        [VariableDefinition( (Single) 0.0f )]
+        evVarOverridePetPower,
     }
 
 
@@ -93,6 +105,7 @@ namespace AquariaTrainerCSharp
             { ECheat.evCheatDualFormKillCountHack, 0x65558 },
             { ECheat.evCheatOverrideVelocity, 0x5ECD3 },
             { ECheat.evCheatOverrideEnergyShotDamage, 0x65282 },
+            { ECheat.evCheatOverridePetPower, 0x12D115 },
         };
         #endregion
 
