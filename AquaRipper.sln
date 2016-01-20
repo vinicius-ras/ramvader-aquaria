@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+# Copyright (C) 2014 Vinicius Rogério Araujo Silva
+# 
+# This file is part of AquaRipper.
+# 
+# AquaRipper is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# AquaRipper is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with AquaRipper.  If not, see <http://www.gnu.org/licenses/>.
+
+
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaRipper", "AquaRipper\AquaRipper.csproj", "{B1E8B7AE-6806-48EC-BAD7-C550DC938D60}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "AquaRipperSetupMSI", "AquaRipperSetupMSI\AquaRipperSetupMSI.wixproj", "{DEAD7D35-EF87-44DB-AFCC-8E16795BC332}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "AquaRipperSetupBundle", "AquaRipperSetupBundle\AquaRipperSetupBundle.wixproj", "{C2C162BA-374B-459A-9A11-937ADA6F272F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1E8B7AE-6806-48EC-BAD7-C550DC938D60}.Debug|x86.ActiveCfg = Debug|x86
+		{B1E8B7AE-6806-48EC-BAD7-C550DC938D60}.Debug|x86.Build.0 = Debug|x86
+		{B1E8B7AE-6806-48EC-BAD7-C550DC938D60}.Release|x86.ActiveCfg = Release|x86
+		{B1E8B7AE-6806-48EC-BAD7-C550DC938D60}.Release|x86.Build.0 = Release|x86
+		{DEAD7D35-EF87-44DB-AFCC-8E16795BC332}.Debug|x86.ActiveCfg = Debug|x86
+		{DEAD7D35-EF87-44DB-AFCC-8E16795BC332}.Debug|x86.Build.0 = Debug|x86
+		{DEAD7D35-EF87-44DB-AFCC-8E16795BC332}.Release|x86.ActiveCfg = Release|x86
+		{DEAD7D35-EF87-44DB-AFCC-8E16795BC332}.Release|x86.Build.0 = Release|x86
+		{C2C162BA-374B-459A-9A11-937ADA6F272F}.Debug|x86.ActiveCfg = Debug|x86
+		{C2C162BA-374B-459A-9A11-937ADA6F272F}.Debug|x86.Build.0 = Debug|x86
+		{C2C162BA-374B-459A-9A11-937ADA6F272F}.Release|x86.ActiveCfg = Release|x86
+		{C2C162BA-374B-459A-9A11-937ADA6F272F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

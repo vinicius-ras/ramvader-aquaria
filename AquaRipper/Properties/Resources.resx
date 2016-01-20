@@ -153,6 +153,12 @@
   <data name="strGroupBoxHeaderGameInfo" xml:space="preserve">
     <value>Game info</value>
   </data>
+  <data name="strGroupBoxHeaderSupport" xml:space="preserve">
+    <value>Support us!</value>
+  </data>
+  <data name="strLblClickToDonate" xml:space="preserve">
+    <value>(Click to donate via PayPal).</value>
+  </data>
   <data name="strLblGamesProcessPrompt" xml:space="preserve">
     <value>Game's process:</value>
   </data>
@@ -181,6 +187,9 @@
   </data>
   <data name="strLblProcessIDPrompt" xml:space="preserve">
     <value>PID:</value>
+  </data>
+  <data name="strLblRequestForDonation" xml:space="preserve">
+    <value>Please, consider supporting the developer!</value>
   </data>
   <data name="strLblRequiredGameVersionPrompt" xml:space="preserve">
     <value>Required game version:</value>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright (C) 2014 Vinicius Rogério Araujo Silva
+ -
+ - This file is part of AquaRipper.
+ - 
+ - AquaRipper is free software: you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation, either version 3 of the License, or
+ - (at your option) any later version.
+ - 
+ - AquaRipper is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ - 
+ - You should have received a copy of the GNU General Public License
+ - along with AquaRipper.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- This file will be generating the MSI file which installs AquaRipper into the user's machine. -->
+  <Product Id="0DA813FF-7986-4486-BE04-EFCFA91BC713" UpgradeCode="1D8EDFE2-C2F1-4899-8A83-B0A77D6C30D9"
+           Name="AquaRipper Trainer" Manufacturer="Vinicius.RAS" Language="1033" Codepage="1252"
+           Version="1.0.0">
+    <!-- Package, upgrade and downgrade information. -->
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+             Keywords="Installer"
+             Manufacturer="Vinicius.RAS" Languages="1033" SummaryCodepage="1252"
+             Description="AquaRipper is a trainer by Vinicius.RAS for the game Aquaria." />
+
+    <MajorUpgrade AllowDowngrades="no" DowngradeErrorMessage="A newer version of AquaRipper is already installed." />
+
+    <!-- Configure media where the files will be stored. -->
+    <Media Id="1" Cabinet="AquaRipperFiles.cab" EmbedCab="yes" />
+
+    <!-- Add the icon(s) we'll be using... -->
+    <Icon Id="AquaRipperIcon" SourceFile="$(var.AquaRipper.ProjectDir)media\icon.ico" />
+
+    <!-- Configure app's icon to appear in Windows' "Add/Remove Programs" -->
+    <Property Id="ARPPRODUCTICON" Value="AquaRipperIcon" />
+
+    <!-- Configure the files and directories that will be installed. -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- Files to be installed at Program Files (x86). -->
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONROOTDIRECTORY" Name="AquaRipper">
+          <Component Id="AquaRipper.exe" Guid="1FB5D962-AFCE-4BA2-A04A-9F42F1CA5379">
+            <File Id="AquaRipper.exe" Source="$(var.AquaRipper.TargetPath)" Checksum="yes" />
+          </Component>
+
+          <Component Id="RAMvader.dll" Guid="481B7811-0812-4E99-9DF2-10357B38213E">
+            <File Source="$(var.AquaRipper.TargetDir)RAMvader.dll" Checksum="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <!-- Directory table entries to create shortcuts on the Program Menu folder (Windows' "Start menu") -->
+      <Directory Id="ProgramMenuFolder">
+        <Component Id="AquaRipperAppShortcut" Guid="387FA242-8662-4C21-A9DD-FA0573CC53C3">
+          <!-- Shortcut to run the trainer from the Program Menu. -->
+          <Shortcut Id="AquaRipperProgramMenuShortcut" Target="[#AquaRipper.exe]"
+                    Name="AquaRipper" Description="Runs AquaRipper: a trainer for the game Aquaria." />
+
+          <!-- Allows removal of shortcuts when the trainer gets uninstalled. -->
+          <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </Directory>
+
+    <!-- Finally, make the feature available for installation. -->
+    <Feature Id="AquaRipperMainFiles" Level="1"
+             Absent="disallow" AllowAdvertise="no"
+             ConfigurableDirectory="APPLICATIONROOTDIRECTORY"
+             Title="AquaRipper's main files" Description="Main files which allow the AquaRipper trainer to be executed."
+             Display="expand">
+      <ComponentRef Id="AquaRipper.exe" />
+      <ComponentRef Id="AquaRipperAppShortcut" />
+      <ComponentRef Id="RAMvader.dll" />
+    </Feature>
+
+    <!-- Configure the installer's User Interface. -->
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.AquaRipper.ProjectDir)docs\License.rtf" />
+
+  </Product>
+</Wix>

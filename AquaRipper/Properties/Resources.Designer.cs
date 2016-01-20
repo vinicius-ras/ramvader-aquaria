@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AquariaTrainerCSharp.Properties {
+namespace AquaRipper.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AquariaTrainerCSharp.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AquariaTrainerCSharp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AquaRipper.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -169,6 +169,24 @@ namespace AquariaTrainerCSharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Support us!.
+        /// </summary>
+        public static string strGroupBoxHeaderSupport {
+            get {
+                return ResourceManager.GetString("strGroupBoxHeaderSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Click to donate via PayPal)..
+        /// </summary>
+        public static string strLblClickToDonate {
+            get {
+                return ResourceManager.GetString("strLblClickToDonate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game&apos;s process:.
         /// </summary>
         public static string strLblGamesProcessPrompt {
@@ -246,6 +264,15 @@ namespace AquariaTrainerCSharp.Properties {
         public static string strLblProcessIDPrompt {
             get {
                 return ResourceManager.GetString("strLblProcessIDPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, consider supporting the developer!.
+        /// </summary>
+        public static string strLblRequestForDonation {
+            get {
+                return ResourceManager.GetString("strLblRequestForDonation", resourceCulture);
             }
         }
         

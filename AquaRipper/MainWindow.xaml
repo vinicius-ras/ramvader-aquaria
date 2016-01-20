@@ -1,14 +1,33 @@
-﻿<Window x:Class="AquariaTrainerCSharp.MainWindow"
+﻿<!--
+ - Copyright (C) 2014 Vinicius Rogério Araujo Silva
+ -
+ - This file is part of AquaRipper.
+ - 
+ - AquaRipper is free software: you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation, either version 3 of the License, or
+ - (at your option) any later version.
+ - 
+ - AquaRipper is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ - 
+ - You should have received a copy of the GNU General Public License
+ - along with AquaRipper.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+<Window x:Class="AquaRipper.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AquariaTrainerCSharp"
-        xmlns:props="clr-namespace:AquariaTrainerCSharp.Properties"
+        xmlns:local="clr-namespace:AquaRipper"
+        xmlns:props="clr-namespace:AquaRipper.Properties"
         xmlns:comModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="{x:Static props:Resources.strMainWindowTitle}" Height="350" Width="550" Closing="WindowClosing">
+        Width="550" Height="450" SizeToContent="Height"
+        Title="{x:Static props:Resources.strMainWindowTitle}" Closing="WindowClosing">
     <Window.Resources>
         <Style x:Key="styleVisibleWhenAttached" TargetType="{x:Type TypeName=FrameworkElement}">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -165,6 +184,20 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="{x:Static props:Resources.strGroupBoxHeaderSupport}" Margin="3" FontWeight="Bold">
+
+            <StackPanel Orientation="Horizontal">
+                <Button Width="50" Height="50" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Padding="2" Margin="3,3,10,3" UseLayoutRounding="False" Click="ButtonClickDonate">
+                    <Button.Content>
+                        <Image Source="media/donate.png" Stretch="UniformToFill" />
+                    </Button.Content>
+                </Button>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Grid.Row="0" Grid.Column="1" Content="{x:Static props:Resources.strLblRequestForDonation}" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom" Margin="0" Padding="0" />
+                    <Label Grid.Row="1" Grid.Column="1" FontStyle="Italic" Content="{x:Static props:Resources.strLblClickToDonate}" VerticalAlignment="Center"  Margin="0" Padding="0" FontWeight="Normal" />
+                </StackPanel>
             </StackPanel>
         </GroupBox>
     </StackPanel>

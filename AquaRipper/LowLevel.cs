@@ -1,9 +1,29 @@
-﻿/* This file keeps definitions for code elements which are part of the low-level features of the trainer. */
+﻿/*
+ * Copyright (C) 2014 Vinicius Rogério Araujo Silva
+ *
+ * This file is part of AquaRipper.
+ * 
+ * AquaRipper is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * AquaRipper is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with AquaRipper.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/* This file keeps definitions for code elements which are part of the low-level features of the trainer. */
 using RAMvader.CodeInjection;
 using System;
 using System.Collections.Generic;
 
-namespace AquariaTrainerCSharp
+namespace AquaRipper
 {
     /// <summary>Identifiers for all cheats available in the trainer.</summary>
     public enum ECheat
